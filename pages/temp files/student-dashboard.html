@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4 md:p-8">
+    <div class="bg-gray-800 rounded-2xl shadow-xl w-full max-w-6xl p-6 md:p-10">
+        <!-- Dashboard Header -->
+        <header class="flex items-center justify-between flex-wrap mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-white mb-2 md:mb-0">
+                Library Dashboard
+            </h1>
+            <div class="flex items-center space-x-4">
+                <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-full transition-colors duration-200">
+                    Profile Settings
+                </button>
+            </div>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Left Column: Student Profile -->
+            <div class="md:col-span-1 bg-gray-700 rounded-xl p-6">
+                <div class="flex flex-col items-center text-center">
+                    <!-- Placeholder for student photo -->
+                    <div class="w-24 h-24 bg-gray-500 rounded-full flex items-center justify-center overflow-hidden mb-4">
+                        <img src="https://placehold.co/100x100/374151/FFFFFF?text=JP" alt="Student Profile Picture" class="w-full h-full object-cover">
+                    </div>
+                    <h2 class="text-2xl font-semibold text-white">John Peter</h2>
+                    <p class="text-gray-400">Student ID: 12345</p>
+                    <p class="text-gray-400">Email: john.p@university.edu</p>
+                </div>
+                
+                <hr class="border-gray-600 my-6">
+
+                <!-- Actions/Navigation -->
+                <nav>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="#" class="flex items-center space-x-3 text-gray-300 hover:text-white transition-colors duration-200">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M3 14h18m-9-4v8m-7-8h14a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2v-8a2 2 0 012-2z" />
+                                </svg>
+                                <span>My Account</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center space-x-3 text-gray-300 hover:text-white transition-colors duration-200">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.468 9.248 5.25 7.949 5.86c-1.121.5-1.996 1.48-2.617 2.659-1.394 2.94-1.394 6.26 0 9.2L12 21.253v-13z" />
+                                </svg>
+                                <span>Notifications</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Right Column: Books & History -->
+            <div class="md:col-span-2 space-y-6">
+                <!-- Book Search Bar -->
+                <div class="bg-gray-700 rounded-xl p-6">
+                    <h3 class="text-xl font-semibold mb-4 text-white">Search Books</h3>
+                    <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                        <input type="text" placeholder="Search by title, author, or ISBN" class="flex-grow bg-gray-600 text-white placeholder-gray-400 border-none rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-200">
+                            Search
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tabs for Issued Books & History -->
+                <div class="bg-gray-700 rounded-xl p-6">
+                    <div class="flex border-b border-gray-600 mb-6">
+                        <button id="issued-tab" onclick="showTab('issued')" class="pb-3 px-4 border-b-2 font-medium transition-colors duration-200 focus:outline-none border-blue-500 text-white">
+                            Issued Books
+                        </button>
+                        <button id="history-tab" onclick="showTab('history')" class="pb-3 px-4 border-b-2 font-medium transition-colors duration-200 focus:outline-none border-transparent text-gray-400 hover:text-white">
+                            Borrowing History
+                        </button>
+                    </div>
+
+                    <!-- Issued Books Content -->
+                    <div id="issued-content" class="tab-content">
+                        <div class="overflow-x-auto rounded-lg">
+                            <table class="min-w-full bg-gray-600 rounded-lg">
+                                <thead>
+                                    <tr>
+                                        <th class="py-3 px-4 text-left text-sm font-semibold text-gray-300">Title</th>
+                                        <th class="py-3 px-4 text-left text-sm font-semibold text-gray-300">Author</th>
+                                        <th class="py-3 px-4 text-left text-sm font-semibold text-gray-300">Due Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b border-gray-500 last:border-b-0">
+                                        <td class="py-4 px-4">The Lord of the Rings</td>
+                                        <td class="py-4 px-4">J.R.R. Tolkien</td>
+                                        <td class="py-4 px-4 text-red-400 font-semibold">2025-09-15</td>
+                                    </tr>
+                                    <tr class="border-b border-gray-500 last:border-b-0">
+                                        <td class="py-4 px-4">A Brief History of Time</td>
+                                        <td class="py-4 px-4">Stephen Hawking</td>
+                                        <td class="py-4 px-4 text-yellow-400">2025-10-20</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Borrowing History Content -->
+                    <div id="history-content" class="tab-content hidden">
+                        <div class="overflow-x-auto rounded-lg">
+                            <table class="min-w-full bg-gray-600 rounded-lg">
+                                <thead>
+                                    <tr>
+                                        <th class="py-3 px-4 text-left text-sm font-semibold text-gray-300">Title</th>
+                                        <th class="py-3 px-4 text-left text-sm font-semibold text-gray-300">Borrow Date</th>
+                                        <th class="py-3 px-4 text-left text-sm font-semibold text-gray-300">Return Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b border-gray-500 last:border-b-0">
+                                        <td class="py-4 px-4">Pride and Prejudice</td>
+                                        <td class="py-4 px-4">2025-08-01</td>
+                                        <td class="py-4 px-4">2025-08-25</td>
+                                    </tr>
+                                    <tr class="border-b border-gray-500 last:border-b-0">
+                                        <td class="py-4 px-4">The Great Gatsby</td>
+                                        <td class="py-4 px-4">2025-07-10</td>
+                                        <td class="py-4 px-4">2025-08-01</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            const issuedContent = document.getElementById('issued-content');
+            const historyContent = document.getElementById('history-content');
+            const issuedTab = document.getElementById('issued-tab');
+            const historyTab = document.getElementById('history-tab');
+
+            if (tabName === 'issued') {
+                issuedContent.classList.remove('hidden');
+                historyContent.classList.add('hidden');
+                issuedTab.classList.add('border-blue-500', 'text-white');
+                issuedTab.classList.remove('border-transparent', 'text-gray-400', 'hover:text-white');
+                historyTab.classList.add('border-transparent', 'text-gray-400', 'hover:text-white');
+                historyTab.classList.remove('border-blue-500', 'text-white');
+            } else {
+                issuedContent.classList.add('hidden');
+                historyContent.classList.remove('hidden');
+                historyTab.classList.add('border-blue-500', 'text-white');
+                historyTab.classList.remove('border-transparent', 'text-gray-400', 'hover:text-white');
+                issuedTab.classList.add('border-transparent', 'text-gray-400', 'hover:text-white');
+                issuedTab.classList.remove('border-blue-500', 'text-white');
+            }
+        }
+    </script>
+</body>
+</html>

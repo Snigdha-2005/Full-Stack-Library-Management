@@ -1,0 +1,252 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Register - Library Management System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: url("https://img.freepik.com/premium-photo/illustration-bookshelf-library-copyspace-background_564714-9190.jpg") no-repeat center center/cover;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .card {
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+      background-color: rgba(255, 255, 255, 0.95);
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    .form-label {
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    .input-group-text {
+      background-color: #c75e8e;
+      border: none;
+      color: white;
+    }
+
+    .form-control,
+    .form-select {
+      border-radius: 10px;
+    }
+
+    .btn-register {
+      background: linear-gradient(135deg, #e33b51, #cdd5b7);
+      border: none;
+      font-weight: 600;
+      font-size: 16px;
+      color: white;
+      border-radius: 10px;
+    }
+
+    .btn-register:hover {
+      background: linear-gradient(135deg, #d44c9e, #1e8449);
+    }
+
+    #userInfo {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #ecf0f1;
+      border-radius: 10px;
+    }
+
+    #userInfo h5 {
+      color: #2c3e50;
+    }
+   a{
+    text-decoration: none;
+    color:crimson;
+   }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card p-4" style="max-width: 450px; width: 100%;">
+    <h3 class="text-center mb-3">Create Account</h3>
+    <form id="registerForm">
+      <div class="mb-3">
+        <label class="form-label" for="name">Full Name</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+          <input type="text" class="form-control" id="name" placeholder="Enter full name" required />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="email">Email</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+          <input type="email" class="form-control" id="email" placeholder="Enter email" required />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="userName">User name</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+          <input type="text" class="form-control" id="userName" placeholder="Enter User name" required />
+        </div>
+      </div>      
+
+      <div class="mb-3">
+        <label class="form-label" for="password">Password</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
+          <input type="password" class="form-control" id="password" placeholder="Enter password" required />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="confirmPassword">Confirm Password</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-key"></i></span>
+          <input type="password" class="form-control" id="confirmPassword" placeholder="Re-enter password" required />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="role">Register as</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-person-badge-fill"></i></span>
+          <select class="form-select" id="role" required>
+            <option value="admin">Admin</option>
+            <option value="student" selected>Student</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-register w-100">Register</button>
+
+      <p class="text-center mt-3">Already have an account? <a href="login">Login</a></p>
+    </form>
+
+    <div id="userInfo">
+      <h5>🎉 Registration Successful!</h5>
+      <p><strong>Name:</strong> <span id="showName"></span></p>
+      <p><strong>Email:</strong> <span id="showEmail"></span></p>
+      <p><strong>Role:</strong> <span id="showRole"></span></p>
+      <p id="message" style="color: red;"></p>
+    </div>
+  </div>
+   <!-- <script>
+  const form = document.getElementById("registerForm");
+  const userInfo = document.getElementById("userInfo");
+  const messageEl = document.getElementById("message");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+    const role = document.getElementById("role").value;
+
+    // Validate passwords match
+    if (password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+
+    // Simulate registration delay
+    setTimeout(() => {
+      // Success message
+      messageEl.style.color = "green";
+      messageEl.innerText = "🎉 Registered successfully!";
+
+      // Fill user info
+      document.getElementById("showName").innerText = name;
+      document.getElementById("showEmail").innerText = email;
+      document.getElementById("showRole").innerText = role.charAt(0).toUpperCase() + role.slice(1);
+
+      userInfo.style.display = "block";
+      form.reset();
+    }, 500); // 0.5 second delay to simulate processing
+  });
+</script> -->
+<script>
+  const form = document.getElementById("registerForm");
+  const userInfo = document.getElementById("userInfo");
+  const messageEl = document.getElementById("message");
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const userName = document.getElementById("userName").value.trim();
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+    const role = document.getElementById("role").value;
+
+    const validate=()=>{
+
+    }
+
+
+    if (!(name && email && userName)) {
+      alert("Please fill out all the fields.");
+      return;
+    }
+    else if (password.length<8) {
+      alert("Use a password of at least 8 characters!");
+      return;
+    }
+
+    else if (password !== confirmPassword ) {
+      alert("Passwords do not match!");
+      return;
+    }    
+
+    try {
+      const res = await fetch("/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, userName, password, role })
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data.message || "Registration failed");
+        return;
+      }
+
+      // Optional: show success box
+      form.style.display='none';
+      messageEl.style.color = "green";
+      messageEl.innerText = "🎉 Registered successfully!";
+      document.getElementById("showName").innerText = name;
+      document.getElementById("showEmail").innerText = email;
+      document.getElementById("showRole").innerText = role.charAt(0).toUpperCase() + role.slice(1);
+      userInfo.style.display = "block";
+
+      // Redirect to login
+      setTimeout(() => (window.location.href = "login"), 1200);
+    } catch (err) {
+      alert("Server error. Please try again.");
+      console.error(err);
+    }
+  });
+</script>
+
+</body>
+</html>

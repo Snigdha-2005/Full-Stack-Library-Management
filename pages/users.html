@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Panel - Registered Users</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f9fc;
+      padding: 0;
+      margin: 0;
+    }
+
+    .container {
+      background: white;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      margin-left: 240px;
+      max-width: calc(100% - 240px);
+    }
+
+    h2 {
+      margin-bottom: 25px;
+    }
+
+    #back-btn {
+      float: right;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: 0.2s all ease-in-out;
+    }
+
+    #back-btn:hover {
+      background-color: rgb(255, 163, 163);
+    }
+
+    .sidebar {
+      width: 220px;
+      height: 100vh;
+      background: #2c3e50;
+      color: #fff;
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 20px;
+      z-index: 1000;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 1.5rem;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 5px;
+    }
+
+    .sidebar a:hover {
+      background: #34495e;
+    }
+
+    #editEmail {
+      background-color: #a2a2a24d;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <h2>📚 Library</h2>
+    <a href="/admin/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+    <a href="/admin/manage-books"><i class="fas fa-book"></i> Manage Books</a>
+    <a href="/admin/manage-students"><i class="fas fa-user-graduate"></i> Manage Students</a>
+    <a href="/admin/manage-allUsers"><i class="fas fa-user"></i> Manage Users</a>
+  </div>
+
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="mb-0">📋 Registered Users</h2>
+      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">Add User</button>
+    </div>
+
+    <table class="table table-hover" id="userTable">
+      <thead class="table-dark">
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>User Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Users will be populated here -->
+      </tbody>
+    </table>
+
+    <p id="noUsers" class="text-center text-muted" style="display:none;">No users registered yet.</p>
+  </div>
+
+  <!-- Edit User Modal -->
+  <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editUserModalLabel">Edit User Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="editUserForm">
+            <input type="hidden" id="editUserIndex">
+            <div class="mb-3">
+              <label for="editName" class="form-label">Name</label>
+              <input type="text" class="form-control" id="editName" required>
+            </div>
+            <div class="mb-3">
+              <label for="editUserName" class="form-label">User Name</label>
+              <input type="text" class="form-control" id="editUserName" required>
+            </div>
+            <div class="mb-3">
+              <label for="editEmail" class="form-label">Email</label>
+              <input type="email" class="form-control" id="editEmail" required readonly>
+            </div>
+            <div class="mb-3">
+              <label for="editRole" class="form-label">Role</label>
+              <select class="form-select" id="editRole" required>
+                <option value="student">Student</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add User Modal -->
+  <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addUserModalLabel">Add New User</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="addUserForm">
+            <div class="mb-3">
+              <label for="addName" class="form-label">Name</label>
+              <input type="text" class="form-control" id="addName" required>
+            </div>
+            <div class="mb-3">
+              <label for="addUserName" class="form-label">User Name</label>
+              <input type="text" class="form-control" id="addUserName" required>
+            </div>
+            <div class="mb-3">
+              <label for="addEmail" class="form-label">Email</label>
+              <input type="email" class="form-control" id="addEmail" required>
+            </div>
+            <div class="mb-3">
+              <label for="addPassword" class="form-label">Password</label>
+              <input type="password" class="form-control" id="addPassword" required>
+            </div>
+            <div class="mb-3">
+              <label for="addRole" class="form-label">Role</label>
+              <select class="form-select" id="addRole" required>
+                <option value="student">Student</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Add User</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteConfirmModalLabel">Confirm Deletion</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete this user?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const userTableBody = document.querySelector('#userTable tbody');
+    const noUsersMessage = document.getElementById('noUsers');
+
+    // Modal elements for editing
+    const editUserModal = new bootstrap.Modal(document.getElementById('editUserModal'));
+    const editUserForm = document.getElementById('editUserForm');
+    const editNameInput = document.getElementById('editName');
+    const editUserNameInput = document.getElementById('editUserName');
+    const editEmailInput = document.getElementById('editEmail');
+    const editRoleInput = document.getElementById('editRole');
+    const editIndexInput = document.getElementById('editUserIndex');
+
+    // Modal elements for adding a user
+    const addUserModal = new bootstrap.Modal(document.getElementById('addUserModal'));
+    const addUserForm = document.getElementById('addUserForm');
+    const addNameInput = document.getElementById('addName');
+    const addUserNameInput = document.getElementById('addUserName');
+    const addEmailInput = document.getElementById('addEmail');
+    const addPasswordInput = document.getElementById('addPassword');
+    const addRoleInput = document.getElementById('addRole');
+
+    // Modal elements for deletion confirmation
+    const deleteConfirmModal = new bootstrap.Modal(document.getElementById('deleteConfirmModal'));
+    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+    let deleteUserIndex = null;
+
+    let users = [];
+
+    window.onload = async () => {
+      try {
+        const response = await fetch('/api/getUsers');
+        if (!response.ok)
+          throw new Error('Failed to fetch users');
+        users = await response.json();
+        renderUsers();
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    };
+
+    function renderUsers() {
+      userTableBody.innerHTML = '';
+
+      if (users.length === 0) {
+        noUsersMessage.style.display = 'block';
+        return;
+      } else {
+        noUsersMessage.style.display = 'none';
+      }
+
+      users.forEach((user, index) => {
+        const tr = document.createElement('tr');
+
+        tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${user.name}</td>
+                    <td>${user.userName}</td>
+                    <td>${user.email}</td>
+                    <td>${user.role}</td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-primary edit-btn" data-index="${index}">Edit</button>
+                        <button class="btn btn-sm btn-outline-danger delete-btn" data-index="${index}">Delete</button>
+                    </td>
+                `;
+
+        userTableBody.appendChild(tr);
+      });
+
+      // Re-attach event listeners after rendering
+      addEventListeners();
+    }
+
+    function addEventListeners() {
+      // Add event listeners to all edit buttons
+      document.querySelectorAll('.edit-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+          const index = e.target.getAttribute('data-index');
+          const userToEdit = users[index];
+
+          // Populate modal form with current user data
+          editNameInput.value = userToEdit.name;
+          editUserNameInput.value = userToEdit.userName;
+          editEmailInput.value = userToEdit.email;
+          editRoleInput.value = userToEdit.role;
+          editIndexInput.value = index;
+
+          // Show the modal
+          editUserModal.show();
+        });
+      });
+
+      // Add event listeners to all delete buttons
+      document.querySelectorAll('.delete-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+          deleteUserIndex = e.target.getAttribute('data-index');
+          deleteConfirmModal.show();
+        });
+      });
+    }
+
+    // Handle edit form submission
+
+    addUserForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const newUser = {
+        name: addNameInput.value,
+        userName: addUserNameInput.value,
+        email: addEmailInput.value,
+        password: addPasswordInput.value,
+        role: addRoleInput.value,
+      };
+
+      try {
+        const response = await fetch('/api/addUser', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(newUser)
+        });
+        if (!response.ok) {
+          throw new Error('Failed to add user');
+        }
+        const createdUser = await response.json();
+        users.push(createdUser.user);
+        console.log(users)
+        renderUsers();
+      } catch (error) {
+        console.error('Error adding user:', error);
+        return;
+      }
+
+      // Hide modal and re-render table
+      addUserModal.hide();
+      addUserForm.reset();
+    });
+
+    editUserForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const index = editIndexInput.value;
+
+
+      users[index].name = editNameInput.value;
+      users[index].email = editEmailInput.value;
+      users[index].userName = editUserNameInput.value;
+      users[index].role = editRoleInput.value;
+      const userData = users[index];
+
+      try {
+        const response = await fetch(`/api/modUser`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(userData)
+        });
+        if (!response.ok) {
+          throw new Error('Failed to update user');
+        }
+      } catch (error) {
+        console.error('Error updating user:', error);
+        return;
+      }
+
+      // Hide modal and re-render table
+      editUserModal.hide();
+      renderUsers();
+    });
+
+
+    // Handle delete confirmation
+    confirmDeleteBtn.addEventListener('click', async () => {
+      if (deleteUserIndex !== null) {
+        const userName = users[deleteUserIndex].userName;
+        console.log(userName);
+        try {
+          const response = await fetch(`/api/removeUser/${userName}`, {
+            method: 'DELETE',
+          });
+          if (!response.ok) {
+            throw new Error('Failed to delete user');
+          } else {
+            users.splice(deleteUserIndex, 1);
+            deleteUserIndex = null;
+            deleteConfirmModal.hide();
+            renderUsers();
+          }
+        } catch (error) {
+          console.error('Error deleting user:', error);
+          return;
+        }
+      }
+    });
+
+    // Initial render
+    renderUsers();
+  </script>
+</body>
+
+</html>

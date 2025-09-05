@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Student Library Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 220px;
+            height: 100vh;
+            background: #2c3e50;
+            color: #fff;
+            position: fixed;
+            padding: 20px;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            transition: .3s;
+        }
+
+        .sidebar a:hover {
+            background: #34495e;
+        }
+
+        .main-content {
+            margin-left: 220px;
+            padding: 1.5rem;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <div class="sidebar">
+        <h2>📚 Library</h2>
+        <a href="/student/dashboard"><i class="fas fa-home"></i> Dashboard</a>
+        <a href="/student/view-books"><i class="fas fa-book"></i> View Books</a>
+        <a href="/student/issued-books"><i class="fas fa-book-reader"></i> My Issued Books</a>
+        <a href="/student/my-profile" class="bg-gray-700"><i class="fas fa-user"></i> Profile</a>
+    </div>
+
+    <div class="main-content">
+        <div class="max-w-4xl mx-auto h-full">
+
+            <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 mb-6">
+                <div class="flex flex-col sm:flex-row items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <img class="h-20 w-20 rounded-full object-cover" src="https://via.placeholder.com/150" alt="Profile Picture">
+                        <div>
+                            <h1 class="text-3xl font-bold text-gray-900">Jane Doe</h1>
+                            <p class="mt-1 text-lg text-gray-600">Student ID: <span class="font-semibold text-gray-800">123456789</span></p>
+                        </div>
+                    </div>
+                    <button id="logoutBtn" class="mt-4 sm:mt-0 px-6 py-2 rounded-full text-white font-medium transition duration-200 bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                        Logout
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Personal Information</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="flex flex-col">
+                        <span class="text-sm font-medium text-gray-500">Full Name</span>
+                        <span class="mt-1 text-base font-semibold text-gray-900">Jane Elizabeth Doe</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-sm font-medium text-gray-500">Email Address</span>
+                        <span class="mt-1 text-base font-semibold text-gray-900">jane.doe@university.edu</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-sm font-medium text-gray-500">Contact Number</span>
+                        <span class="mt-1 text-base font-semibold text-gray-900">+1 555-123-4567</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-sm font-medium text-gray-500">Date of Birth</span>
+                        <span class="mt-1 text-base font-semibold text-gray-900">January 1, 2000</span>
+                    </div>
+                </div>
+                
+                <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Academic Information</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="flex flex-col">
+                        <span class="text-sm font-medium text-gray-500">Course</span>
+                        <span class="mt-1 text-base font-semibold text-gray-900">Computer Science</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-sm font-medium text-gray-500">Year</span>
+                        <span class="mt-1 text-base font-semibold text-gray-900">3rd Year</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-sm font-medium text-gray-500">Enrollment Date</span>
+                        <span class="mt-1 text-base font-semibold text-gray-900">September 1, 2022</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            // In a real application, you would handle the logout logic here.
+            // This could involve:
+            // 1. Sending a request to a server endpoint to invalidate the session.
+            // 2. Clearing any local storage items (e.g., tokens, user data).
+            
+            // For this example, we'll simply redirect to the home page or login page.
+            alert('You have been logged out.');
+            window.location.href = '/login'; // Or your home/login page URL
+        });

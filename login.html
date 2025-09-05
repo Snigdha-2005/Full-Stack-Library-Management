@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Library Management System - Login</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@600&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    body {
+      background: url("assets/li.jpg") no-repeat center center/cover;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .card {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: linear-gradient(135deg,
+          rgba(255, 255, 255, 0.15),
+          rgba(255, 255, 255, 0.05));
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 25px;
+      padding: 35px 30px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4),
+        0 4px 10px rgba(255, 255, 255, 0.1) inset;
+      width: 100%;
+      max-width: 420px;
+      animation: fadeIn 1s ease-in-out;
+      color: #fff;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1),
+        0 12px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .logo img {
+      height: 60px;
+    }
+
+    .logo h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+      font-weight: bold;
+      color: #fff;
+      margin-top: 10px;
+      margin-bottom: 0;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .logo span {
+      font-size: 14px;
+      font-weight: normal;
+      color: #f0f0f0;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .form-label {
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 6px;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    input.form-control,
+    select.form-select {
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #000;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
+
+    input.form-control:focus,
+    select.form-select:focus {
+      box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.3);
+      outline: none;
+    }
+
+    input::placeholder {
+      color: #777;
+    }
+
+    button.btn-primary {
+      background: #e67e22;
+      border: none;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 10px;
+      border-radius: 10px;
+      transition: background 0.3s ease;
+    }
+
+    button.btn-primary:hover {
+      background: #d35400;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <!-- Logo -->
+    <div class="logo text-center mb-4">
+      <img src="assets/read.jpg" alt="Library Logo" />
+
+      <h2>LIBRARY <br /><span>MANAGEMENT SYSTEM</span></h2>
+    </div>
+
+    <!-- Login Form -->
+    <form id="loginForm">
+      <div class="mb-3">
+        <label class="form-label">Email / User ID</label>
+        <input type="text" class="form-control" name="loginID" placeholder="Enter email or user name" required />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" name="password" placeholder="Enter password" required />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Login as</label>
+        <select class="form-select" name="role">
+          <option value="admin">Admin</option>
+          <option value="student">Student</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">Login</button>
+
+      <div id="message" class="mt-3 text-center text-light"></div>
+
+      <div class="d-flex justify-content-between mt-3">
+        <a href="forget" class="text-light text-decoration-none">Forgot Password?</a>
+        <a href="register" class="text-light text-decoration-none">Register</a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const loginID = document.querySelector('input[name="loginID"]').value.trim();
+      const password = document.querySelector('input[name="password"]').value.trim();
+      const role = document.querySelector('select[name="role"]').value;
+      const messageDiv = document.getElementById("message");
+
+
+      messageDiv.textContent = ''; // clear previous messages
+
+      try {
+
+        const response = await fetch("/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ loginID, password, role })
+        });
+
+
+        if(response.redirected){
+          window.location.replace(response.url);
+        }
+        // else{
+        //   const data=await response.json();
+        //   console.log(data)
+        // }
+
+
+        // if () {
+
+        //   // messageDiv.style.color = "lightgreen";
+        //   // messageDiv.textContent = `Welcome, ${data.name || email}! Redirecting...`;
+
+
+        // }
+        // else {
+        //   // messageDiv.style.color = "#ff6b6b";
+        //   // messageDiv.textContent = data.message || "Login failed";
+        // }
+      }
+      catch (err) {
+        messageDiv.style.color = "#ff6b6b";
+        messageDiv.textContent = err;
+      }
+    });
+  </script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

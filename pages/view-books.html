@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Books</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f4f6f9;
+      color: #333;
+      display: flex;
+
+
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      height: 100vh;
+      background: #2c3e50;
+      color: #fff;
+      padding: 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      overflow-y: auto;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 5px;
+      transition: .3s;
+    }
+
+    .sidebar a:hover {
+      background: #34495e;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 15px;
+      padding: 8px 14px;
+      background: #2980b9;
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .back-btn:hover {
+      background: #1f6391;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+
+    .total-books {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 18px;
+      color: #555;
+    }
+
+    /* Search & filter */
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .controls input {
+      flex: 1;
+      min-width: 200px;
+      padding: 10px 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    .controls input:focus {
+      border-color: #2980b9;
+      box-shadow: 0 0 6px rgba(41, 128, 185, 0.4);
+    }
+
+    .alphabet-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .alphabet-filter button {
+      padding: 6px 10px;
+      border: none;
+      border-radius: 20px;
+      background: #ecf0f1;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .alphabet-filter button:hover,
+    .alphabet-filter button.active {
+      background: #2980b9;
+      color: white;
+      font-weight: bold;
+    }
+
+    /* Books grid */
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+    }
+
+    .book-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    .book-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .book-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .book-info {
+      padding: 12px;
+      text-align: center;
+    }
+
+    .book-info h4 {
+      margin: 8px 0 4px;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .book-info p {
+      font-size: 14px;
+      color: #777;
+      margin: 0;
+    }
+
+    @media(max-width:768px) {
+      .controls {
+        flex-direction: column;
+      }
+
+      .books-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>📚 Library</h2>
+    <a href="/student/dashboard"><i class="fas fa-home"></i> Dashboard</a>
+    <a href="/student/view-books"><i class="fas fa-book"></i> View Books</a>
+    <a href="/student/issued-books"><i class="fas fa-book-reader"></i> My Issued Books</a>
+    <!-- <a href="student/"><i class="fas fa-user"></i> Profile</a> -->
+  </div>
+  <div class="container">
+    <a href="student-dashboard.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back</a>
+    <h1>📚 Library Books</h1>
+    <p class="total-books" id="totalBooks"></p>
+
+    <div class="controls">
+      <input type="text" id="searchInput" placeholder="Search books...">
+    </div>
+
+    <div class="alphabet-filter" id="alphabetFilter"></div>
+
+    <div class="books-grid" id="booksGrid"></div>
+  </div>
+
+  <script>
+    const booksGrid = document.getElementById("booksGrid");
+    const searchInput = document.getElementById("searchInput");
+    const alphabetFilter = document.getElementById("alphabetFilter");
+    const totalBooks = document.getElementById("totalBooks");
+
+    let books = [];
+
+    async function loadBooks() {
+      const response = await fetch('http://localhost:5000/api/getBooks');
+      if (response.ok) {
+        const data = await response.json();
+        books = data;
+
+        data.sort((a, b) => a.title.localeCompare(b.title));
+        renderBooks(data);
+        createAlphabetFilter();
+
+      } else {
+        console.error("Failed to fetch books");
+      }
+    }
+
+    // Render books
+    function renderBooks(data) {
+      booksGrid.innerHTML = "";
+      data.forEach(b => {
+        const card = document.createElement("div");
+        card.classList.add("book-card");
+        card.innerHTML = `
+      <img src="${b.cover_url}" alt="${b.title}">
+      <h4>${b.title}</h4>
+      <p>${b.author}</p>
+    `;
+        booksGrid.appendChild(card);
+      });
+      totalBooks.textContent = (data.length === 1) ? "1 book available" : `${data.length} books available`;
+    }
+
+    // Search filter
+    searchInput.addEventListener("keyup", e => {
+      const q = e.target.value.toLowerCase();
+      renderBooks(books.filter(b => b.title.toLowerCase().includes(q)));
+    });
+
+    // Alphabet filter
+    function createAlphabetFilter() {
+      const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+      alphabetFilter.innerHTML = "";
+
+      const allBtn = document.createElement("button");
+      allBtn.textContent = "All";
+      allBtn.classList.add("active");
+      allBtn.addEventListener("click", () => {
+        document.querySelectorAll(".alphabet-filter button").forEach(b => b.classList.remove("active"));
+        allBtn.classList.add("active");
+        renderBooks(books);
+      });
+      alphabetFilter.appendChild(allBtn);
+
+      letters.forEach(letter => {
+        const btn = document.createElement("button");
+        btn.textContent = letter;
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".alphabet-filter button").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          renderBooks(books.filter(b => b.title.toLowerCase().startsWith(letter.toLowerCase())));
+        });
+        alphabetFilter.appendChild(btn);
+      });
+    }
+
+    // Page load
+    window.onload = loadBooks;
+  </script>
+</body>
+
+</html>
