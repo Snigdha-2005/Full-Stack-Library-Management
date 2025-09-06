@@ -87,7 +87,7 @@ app.get("/forget", (req, res) => {
 });
 
 app.get("/api/getBooks", getBooks);
-app.post("/api/addBook", addBook);
+app.post("/api/addBook", isAuthenticated("admin"), addBook);
 app.patch("/api/modBook", isAuthenticated("admin"), modBook);
 app.delete("/api/removeBook/:isbn", isAuthenticated("admin"), removeBook);
 
@@ -109,3 +109,4 @@ app.listen(
   PORT,
   () => console.log(`🚀 Server running at http://localhost:${PORT}`),
 );
+
