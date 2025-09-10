@@ -121,7 +121,7 @@ async function returnBook(req, res) {
     }
 
     // 2. Find the user and the book concurrently
-    let [user, book] = await Promise.all([
+    const [user, book] = await Promise.all([
       User.findById(userId),
       Book.findById(bookId),
     ]);
@@ -144,7 +144,7 @@ async function returnBook(req, res) {
       });
     }
     // 5. Remove the issued book from the user's array and increment the book's quantity
-    [ book, user] =await Promise.all([
+    await Promise.all([
       Book.findByIdAndUpdate(bookId, { $inc: { quantity: 1 } }, { new: true }),
       User.findByIdAndUpdate(userId, {
         $pull: { issued_books: { book_id: bookId } },
@@ -216,3 +216,4 @@ async function renewBook(req, res) {
 }
 
 module.exports = { issueBook, returnBook, renewBook };
+
