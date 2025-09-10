@@ -375,7 +375,7 @@
       const userData = users[index];
 
       try {
-        const response = await fetch(`/api/modUser`, {
+        const response = await fetch('/api/modUser', {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json'
@@ -390,7 +390,6 @@
         return;
       }
 
-      // Hide modal and re-render table
       editUserModal.hide();
       renderUsers();
     });

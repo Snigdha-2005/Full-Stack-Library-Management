@@ -191,23 +191,7 @@
         if(response.redirected){
           window.location.replace(response.url);
         }
-        // else{
-        //   const data=await response.json();
-        //   console.log(data)
-        // }
 
-
-        // if () {
-
-        //   // messageDiv.style.color = "lightgreen";
-        //   // messageDiv.textContent = `Welcome, ${data.name || email}! Redirecting...`;
-
-
-        // }
-        // else {
-        //   // messageDiv.style.color = "#ff6b6b";
-        //   // messageDiv.textContent = data.message || "Login failed";
-        // }
       }
       catch (err) {
         messageDiv.style.color = "#ff6b6b";

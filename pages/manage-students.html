@@ -256,7 +256,7 @@
         <div class="content-body">
             <div class="student-table-container">
                 <div id="noSelectionMessage" class="text-center text-gray-500 mt-5">
-                    <img src="open-book-library-svgrepo-com.svg" alt="">
+                    <img src="/assets/open-book-library-svgrepo-com.svg" alt="">
                     <p>Click on a student row to view their profile and issued books.</p>
                 </div>
                 <div class="flex justify-between items-center flex-wrap mb-3">
@@ -294,11 +294,11 @@
                             <div class="w-1/2 h-full font-0 text-right">
                                 <p><span class="font-semibold text-gray-600">Books Issued:
                                     </span>
-                                    <span id="profileBooksCount"></span>
+                                    <span id="profileIssuedCount"></span>
                                 </p>
                                 <p><span class="font-semibold text-gray-600">Books Due:
                                     </span>
-                                    <span id="profileBooksCount"></span>
+                                    <span id="profileDueCount"></span>
                                 </p>
 
                             </div>
@@ -457,7 +457,8 @@
         const searchInput = document.getElementById("searchInput");
         const editModal = document.getElementById("editModal");
         const deleteModal = document.getElementById("deleteModal");
-        const profileBooksCount = document.getElementById("profileBooksCount");
+        const profileIssuedCount = document.getElementById("profileIssuedCount");
+        const profileDueCount = document.getElementById("profileDueCount");        
         const actionModalTitle = document.getElementById("actionModalTitle");
         const actionModalMessage = document.getElementById("actionModalMessage");
         const actionDateLabel = document.getElementById("actionDateLabel");
@@ -684,10 +685,9 @@
             noSelectionMessage.classList.add('hidden');
             issuedBooksSection.classList.remove('hidden');
 
-            // Get and render issued books for the selected student
-            const book_count = getIssuedBooks(ProfileUserName);
-            // Update the book count on the profile card
-            profileBooksCount.textContent = book_count;
+
+            profileIssuedCount.textContent = student.total_issued;
+            profileDueCount.textContent = getIssuedBooks(ProfileUserName);
         }
 
         function openModal(modalId) {
@@ -807,10 +807,13 @@
                     console.log("Failed to issue the book.");
                     return;
                 }
+                else{
+                    const data=await response.json();
+                    const issuedBook= data.user.issued_books.find(b=>b.isbn===isbn)
+                    console.log(`Issued "${issuedBook.title}" to ${student.name}, due on ${new Date(issuedBook.due_date).toDateString()}.`);
+                    student.issued_books=data.user.issued_books
+                }
 
-                console.log(`Issued "${newBook.title}" to ${student.name}, due on ${newBook.dueDateString}.`);
-
-                // Re-render the UI to reflect the change
                 displayProfile(student);
 
                 closeModal('issueBookModal');

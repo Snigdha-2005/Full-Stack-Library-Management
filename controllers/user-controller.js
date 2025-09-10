@@ -118,7 +118,7 @@ async function removeUser(req, res) {
 
 async function getUsers(req, res) {
   try {
-    const allUsers = await User.find({}).select("-password -__v");
+    const allUsers = await User.find({}).select("-password -__v -_id");
     res.status(200).json(allUsers); // Send the retrieved users as a JSON response
   } catch (error) {
     console.error("Error fetching users:", error);
@@ -135,7 +135,7 @@ async function getCurrentUser(req, res) {
     if (!user) {
       return res.status(401).json({ message: "Unauthorized" });
     }
-    const userDetails = await User.findById(user._id).select("-password -__v");
+    const userDetails = await User.findOne({email: user.email}).select("-password -__v -_id");
     res.status(200).json(userDetails);
   }
   catch (error) {
@@ -256,4 +256,5 @@ module.exports = {
   removeUser,
   searchUsers,
   getUsers,
+  getCurrentUser,
 };

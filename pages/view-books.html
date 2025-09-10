@@ -14,14 +14,15 @@
       background: #f4f6f9;
       color: #333;
       display: flex;
-
-
+      overflow-y: hidden;
     }
 
     .container {
-      max-width: 1200px;
+      width: 90vw;
       margin: 20px auto;
       padding: 0 20px;
+      overflow-y: scroll;
+      max-height: 100vh;
     }
 
     /* Sidebar */
@@ -31,10 +32,7 @@
       background: #2c3e50;
       color: #fff;
       padding: 20px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      overflow-y: auto;
+
     }
 
     .sidebar h2 {
@@ -42,7 +40,8 @@
       margin-bottom: 25px;
     }
 
-    .sidebar a {
+    .sidebar a,
+    .sidebar button {
       display: block;
       color: #fff;
       text-decoration: none;
@@ -50,9 +49,16 @@
       margin: 8px 0;
       border-radius: 5px;
       transition: .3s;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      text-align: left;
+      width: 100%;
+      font-size: 16px;
     }
 
-    .sidebar a:hover {
+    .sidebar a:hover,
+    .sidebar button:hover {
       background: #34495e;
     }
 
@@ -146,7 +152,9 @@
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
       overflow: hidden;
+      text-align: center;
       transition: 0.3s;
+      padding: 16px;
     }
 
     .book-card:hover {
@@ -155,26 +163,22 @@
     }
 
     .book-card img {
+      border-radius: 16px;
       width: 100%;
       height: 220px;
       object-fit: cover;
     }
 
-    .book-info {
-      padding: 12px;
-      text-align: center;
-    }
-
-    .book-info h4 {
-      margin: 8px 0 4px;
+    .book-card h4 {
+      margin-bottom: 0;
       font-size: 16px;
       color: #333;
     }
 
-    .book-info p {
-      font-size: 14px;
-      color: #777;
-      margin: 0;
+    .book-card p {
+      margin-top: 0;
+      font-size: 16px;
+      color: #484848;
     }
 
     @media(max-width:768px) {
@@ -195,11 +199,10 @@
     <h2>📚 Library</h2>
     <a href="/student/dashboard"><i class="fas fa-home"></i> Dashboard</a>
     <a href="/student/view-books"><i class="fas fa-book"></i> View Books</a>
-    <a href="/student/issued-books"><i class="fas fa-book-reader"></i> My Issued Books</a>
-    <!-- <a href="student/"><i class="fas fa-user"></i> Profile</a> -->
+    <button id="logout"><i class="fas fa-sign-out-alt"></i> Logout</button>
   </div>
   <div class="container">
-    <a href="student-dashboard.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back</a>
+
     <h1>📚 Library Books</h1>
     <p class="total-books" id="totalBooks"></p>
 
@@ -221,7 +224,7 @@
     let books = [];
 
     async function loadBooks() {
-      const response = await fetch('http://localhost:5000/api/getBooks');
+      const response = await fetch('/api/getBooks');
       if (response.ok) {
         const data = await response.json();
         books = data;
@@ -242,10 +245,10 @@
         const card = document.createElement("div");
         card.classList.add("book-card");
         card.innerHTML = `
-      <img src="${b.cover_url}" alt="${b.title}">
-      <h4>${b.title}</h4>
-      <p>${b.author}</p>
-    `;
+            <img src="${b.cover_url}" alt="${b.title}">
+            <h4>${b.title}</h4>
+            <p>${b.author}</p>
+        `;
         booksGrid.appendChild(card);
       });
       totalBooks.textContent = (data.length === 1) ? "1 book available" : `${data.length} books available`;
@@ -286,6 +289,15 @@
 
     // Page load
     window.onload = loadBooks;
+
+
+    document.getElementById("logout").addEventListener("click", async () => {
+      const response = await fetch('/logout', {
+        method: "POST"
+      })
+      if (response.redirected)
+        window.location.replace(response.url)
+    })
   </script>
 </body>
 

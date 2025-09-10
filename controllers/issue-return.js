@@ -12,14 +12,17 @@ async function issueBook(req, res) {
     const userId = await User.findOne({ userName }).select("_id");
 
     // 1. Validate the IDs
-    if (!mongoose.Types.ObjectId.isValid(userId) || !mongoose.Types.ObjectId.isValid(bookId)) {
+    if (
+      !mongoose.Types.ObjectId.isValid(userId) ||
+      !mongoose.Types.ObjectId.isValid(bookId)
+    ) {
       return res.status(400).json({ message: "Invalid user or ISBN." });
     }
 
     // 2. Find the book and user concurrently
     const [book, user] = await Promise.all([
-      Book.findById(bookId),
-      User.findById(userId),
+      Book.findById(bookId).select("-__v -_id"),
+      User.findById(userId).select("-password -__v -_id"),
     ]);
 
     // 3. Check if the book and user exist
@@ -35,7 +38,7 @@ async function issueBook(req, res) {
         message: "This title is out of the shelves for now.",
       });
     }
-    if (user.issued_books.some((b) => !b.returned && isbn == book.isbn)) {
+    if (user.issued_books.some((b) => !b.returned && b.isbn == book.isbn)) {
       return res.status(409).json({
         message: "User has already issued this book and not returned it yet.",
       });
@@ -60,6 +63,7 @@ async function issueBook(req, res) {
       Book.findByIdAndUpdate(bookId, { $inc: { quantity: -1 } }, { new: true }),
       // Push the new issued book record to the user's array
       User.findByIdAndUpdate(userId, {
+        $inc: { total_issued: 1 },
         $push: {
           issued_books: {
             book_id: bookId,
@@ -73,16 +77,19 @@ async function issueBook(req, res) {
         },
       }, { new: true }),
     ]);
-
+    const updatedUser = await User.findById(userId).select("-password -__v -_id");
     if (invalidDueDate) {
       return res.status(200).json({
         message:
           "Book issued successfully with a default 14-day due date due to invalid date format.",
-          
+        user: updatedUser,
       });
     }
 
-    res.status(200).json({ message: "Book issued successfully." });
+    res.status(200).json({
+      message: "Book issued successfully.",
+      user: updatedUser,
+    });
   } catch (err) {
     res.status(500).json({
       message: "An internal server error occurred.",
@@ -114,7 +121,7 @@ async function returnBook(req, res) {
     }
 
     // 2. Find the user and the book concurrently
-    const [user, book] = await Promise.all([
+    let [user, book] = await Promise.all([
       User.findById(userId),
       Book.findById(bookId),
     ]);
@@ -128,7 +135,7 @@ async function returnBook(req, res) {
 
     // 4. Find the issued book record in the user's array
     const issuedBookIndex = user.issued_books.findIndex(
-      (book) => book.book_id = bookId,
+      (book) => book.isbn == isbn,
     );
 
     if (issuedBookIndex === -1) {
@@ -136,16 +143,11 @@ async function returnBook(req, res) {
         message: "This book was not issued to this user.",
       });
     }
-
     // 5. Remove the issued book from the user's array and increment the book's quantity
-    await Promise.all([
-      // Increment the book's quantity
+    [ book, user] =await Promise.all([
       Book.findByIdAndUpdate(bookId, { $inc: { quantity: 1 } }, { new: true }),
-      // Pull the book record from the user's issued_books array
       User.findByIdAndUpdate(userId, {
-        $pull: {
-          issued_books: { book_id: bookId },
-        },
+        $pull: { issued_books: { book_id: bookId } },
       }, { new: true }),
     ]);
 
@@ -190,7 +192,9 @@ async function renewBook(req, res) {
       });
     }
     // 4. Find the issued book record in the user's array
-    const issuedBookIndex = user.issued_books.findIndex(b => b.isbn == book.isbn);
+    const issuedBookIndex = user.issued_books.findIndex((b) =>
+      b.isbn == book.isbn
+    );
     if (issuedBookIndex === -1) {
       return res.status(404).json({
         message: "This book was not issued to this user.",
@@ -199,13 +203,16 @@ async function renewBook(req, res) {
     // 5. Update the due date of the issued book
     user.issued_books[issuedBookIndex].due_date = newDueDate;
     await user.save();
-    res.status(200).json({ message: "Book renewed successfully.", issued_books: user.issued_books });
+    res.status(200).json({
+      message: "Book renewed successfully.",
+      issued_books: user.issued_books,
+    });
   } catch (err) {
     res.status(500).json({
       message: "An internal server error occurred.",
       error: err.message,
     });
-  } 
+  }
 }
 
 module.exports = { issueBook, returnBook, renewBook };

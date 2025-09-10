@@ -13,6 +13,11 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  total_issued: {
+    type: Number,
+    min: 0,
+    default: 0,
+  },
   password: { type: String, required: true },
   role: { type: String, enum: ["student", "admin"], default: "student" },
   issued_books: [
@@ -42,10 +47,6 @@ const userSchema = new mongoose.Schema({
       due_date: {
         type: Date,
         required: true,
-      },
-      returned: {
-        type: Boolean,
-        default: false,
       },
     },
   ],

@@ -1,0 +1,726 @@
+[
+    {
+        "title": "Pride and Prejudice",
+        "author": "Jane Austen",
+        "isbn": "9780141439518",
+        "genres": [
+            "Classic",
+            "Romance"
+        ],
+        "publication_year": 1813,
+        "publisher": "Penguin Classics",
+        "cover_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5LufueV8vwLxYKrCSYiw27G2vqNoHDpJTgQ&s",
+        "pages": 480,
+        "quantity": 5
+    },
+    {
+        "title": "The Hitchhiker's Guide to the Galaxy",
+        "author": "Douglas Adams",
+        "isbn": "9780345391803",
+        "genres": [
+            "Science Fiction",
+            "Comedy"
+        ],
+        "publication_year": 1979,
+        "publisher": "Harmony Books",
+        "cover_url": "https://m.media-amazon.com/images/M/MV5BMTg4OWYwZjgtZDU0ZS00NjU4LTkxNjItYmYyYmUwNDU5YmM3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+        "pages": 216,
+        "quantity": 15
+    },
+    {
+        "title": "The Great Gatsby",
+        "author": "F. Scott Fitzgerald",
+        "isbn": "9780743273565",
+        "genres": [
+            "Classic",
+            "Fiction"
+        ],
+        "publication_year": 1925,
+        "publisher": "Scribner",
+        "cover_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJ9_VkuGfH6k2BCTQ_vOEPNlCn9Xki5ZF2zA&s",
+        "pages": 180,
+        "quantity": 20
+    },
+    {
+        "title": "Moby Dick",
+        "author": "Herman Melville",
+        "isbn": "9780142437247",
+        "genres": [
+            "Classic",
+            "Adventure"
+        ],
+        "publication_year": 1851,
+        "publisher": "Penguin Classics",
+        "cover_url": "https://cdn.kobo.com/book-images/c6b00a81-d493-4d69-94ce-2ca407365797/1200/1200/False/moby-dick-618.jpg",
+        "pages": 720,
+        "quantity": 3
+    },
+    {
+        "title": "War and Peace",
+        "author": "Leo Tolstoy",
+        "isbn": "9780307455462",
+        "genres": [
+            "Classic",
+            "Historical Fiction"
+        ],
+        "publication_year": 1869,
+        "publisher": "Vintage",
+        "cover_url": "https://media.s-bol.com/mpER42nvPkO/550x742.jpg",
+        "pages": 1296,
+        "quantity": 2
+    },
+    {
+        "title": "The Catcher in the Rye",
+        "author": "J.D. Salinger",
+        "isbn": "9780316769174",
+        "genres": [
+            "Classic",
+            "Fiction"
+        ],
+        "publication_year": 1951,
+        "publisher": "Little, Brown and Company",
+        "cover_url": "https://npr.brightspotcdn.com/dims4/default/f735808/2147483647/strip/true/crop/363x574+0+0/resize/880x1392!/quality/90/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2Flegacy%2Fsites%2Fwkar%2Ffiles%2Fcatcher_in_the_rye_cover.png",
+        "pages": 277,
+        "quantity": 12
+    },
+    {
+        "title": "The Lord of the Rings",
+        "author": "J.R.R. Tolkien",
+        "isbn": "9780618053267",
+        "genres": [
+            "Fantasy",
+            "Adventure"
+        ],
+        "publication_year": 1954,
+        "publisher": "Houghton Mifflin Harcourt",
+        "cover_url": "https://upload.wikimedia.org/wikipedia/en/4/48/Lord_Rings_Return_King.jpg",
+        "pages": 1178,
+        "quantity": 25
+    },
+    {
+        "title": "The Hobbit",
+        "author": "J.R.R. Tolkien",
+        "isbn": "9780345532596",
+        "genres": [
+            "Fantasy",
+            "Adventure"
+        ],
+        "publication_year": 1937,
+        "publisher": "Del Rey",
+        "cover_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8WlCk7lPrudbQJWN9HHKHqPHGw29Rdsm37Q&s",
+        "pages": 310,
+        "quantity": 20
+    },
+    {
+        "title": "Fahrenheit 451",
+        "author": "Ray Bradbury",
+        "isbn": "9781451673319",
+        "genres": [
+            "Dystopian",
+            "Science Fiction"
+        ],
+        "publication_year": 1953,
+        "publisher": "Simon & Schuster",
+        "cover_url": "https://m.media-amazon.com/images/M/MV5BYmY0YWQ1NjktYzkyOS00MTVhLTljZGUtZTc3MTE0ZTQyZjk2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+        "pages": 249,
+        "quantity": 18
+    },
+    {
+        "title": "Brave New World",
+        "author": "Aldous Huxley",
+        "isbn": "9780060850524",
+        "genres": [
+            "Dystopian",
+            "Science Fiction"
+        ],
+        "publication_year": 1932,
+        "publisher": "Harper Perennial",
+        "cover_url": "https://upload.wikimedia.org/wikipedia/en/6/62/BraveNewWorld_FirstEdition.jpg",
+        "pages": 288,
+        "quantity": 7
+    },
+    {
+        "title": "Dune",
+        "author": "Frank Herbert",
+        "isbn": "9780441172719",
+        "genres": [
+            "Science Fiction",
+            "Fantasy"
+        ],
+        "publication_year": 1965,
+        "publisher": "Ace Books",
+        "cover_url": "https://m.media-amazon.com/images/I/917t3Joq2WL._UF1000,1000_QL80_.jpg",
+        "pages": 896,
+        "quantity": 15
+    },
+    {
+        "title": "The Chronicles of Narnia",
+        "author": "C.S. Lewis",
+        "isbn": "9780066238500",
+        "genres": [
+            "Fantasy",
+            "Children's Literature"
+        ],
+        "publication_year": 1950,
+        "publisher": "HarperCollins",
+        "cover_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsbXrEJ2dlo1hXGzh43Uh8mG8wKPJTDZ2hJw&s",
+        "pages": 767,
+        "quantity": 20
+    },
+    {
+        "title": "The Hunger Games",
+        "author": "Suzanne Collins",
+        "isbn": "9780439023528",
+        "genres": [
+            "Young Adult",
+            "Science Fiction"
+        ],
+        "publication_year": 2008,
+        "publisher": "Scholastic Press",
+        "cover_url": "https://m.media-amazon.com/images/I/71YWByBo3WL._UF1000,1000_QL80_.jpg",
+        "pages": 374,
+        "quantity": 30
+    },
+    {
+        "title": "The Da Vinci Code",
+        "author": "Dan Brown",
+        "isbn": "9780307474272",
+        "genres": [
+            "Thriller",
+            "Mystery"
+        ],
+        "publication_year": 2003,
+        "publisher": "Anchor",
+        "cover_url": "https://upload.wikimedia.org/wikipedia/en/6/6b/DaVinciCode.jpg",
+        "pages": 454,
+        "quantity": 10
+    },
+    {
+        "title": "Gone Girl",
+        "author": "Gillian Flynn",
+        "isbn": "9780307588825",
+        "genres": [
+            "Thriller",
+            "Mystery"
+        ],
+        "publication_year": 2012,
+        "publisher": "Broadway Books",
+        "cover_url": "https://m.media-amazon.com/images/M/MV5BNTFkN2UwZjYtNzI5OC00MTNlLTgwNTEtYjBkOGZiNmY5NDg4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+        "pages": 415,
+        "quantity": 12
+    },
+    {
+        "title": "1984",
+        "author": "George Orwell",
+        "isbn": "9780451524935",
+        "genres": [
+            "Dystopian",
+            "Classic",
+            "Science Fiction"
+        ],
+        "publication_year": 1949,
+        "publisher": "Signet Classic",
+        "cover_url": "https://pictures.abebooks.com/isbn/9786057462220-us.jpg",
+        "pages": 328,
+        "quantity": 8
+    },
+    {
+        "title": "To Kill a Mockingbird",
+        "author": "Harper Lee",
+        "isbn": "9780446310789",
+        "genres": [
+            "Classic",
+            "Fiction"
+        ],
+        "publication_year": 1960,
+        "publisher": "Grand Central Publishing",
+        "cover_url": "https://m.media-amazon.com/images/I/71e0ZGkR4IL.jpg",
+        "pages": 336,
+        "quantity": 10
+    },
+    {
+        "title": "Where the Crawdads Sing",
+        "author": "Delia Owens",
+        "isbn": "9780735219080",
+        "genres": [
+            "Fiction",
+            "Mystery"
+        ],
+        "publication_year": 2018,
+        "publisher": "G.P. Putnam's Sons",
+        "cover_url": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1582135294i/36809135.jpg",
+        "pages": 384,
+        "quantity": 18
+    },
+    {
+        "title": "The Silent Patient",
+        "author": "Alex Michaelides",
+        "isbn": "9781250301691",
+        "genres": [
+            "Thriller",
+            "Mystery"
+        ],
+        "publication_year": 2019,
+        "publisher": "Celadon Books",
+        "cover_url": "https://m.media-amazon.com/images/I/5177eLEs+YL._AC_SS250_.jpg",
+        "pages": 336,
+        "quantity": 12
+    },
+    {
+        "title": "Circe",
+        "author": "Madeline Miller",
+        "isbn": "9780316556347",
+        "genres": [
+            "Mythology",
+            "Fantasy"
+        ],
+        "publication_year": 2018,
+        "publisher": "Little, Brown and Company",
+        "cover_url": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1565909496i/35959740.jpg",
+        "pages": 393,
+        "quantity": 15
+    },
+    {
+        "title": "The Song of Achilles",
+        "author": "Madeline Miller",
+        "isbn": "9780062060624",
+        "genres": [
+            "Mythology",
+            "Historical Fiction"
+        ],
+        "publication_year": 2011,
+        "publisher": "Ecco",
+        "cover_url": "https://m.media-amazon.com/images/I/61DfFK65gwL._SL500_.jpg",
+        "pages": 378,
+        "quantity": 10
+    },
+    {
+        "title": "Eleanor Oliphant Is Completely Fine",
+        "author": "Gail Honeyman",
+        "isbn": "9780735220680",
+        "genres": [
+            "Contemporary",
+            "Fiction"
+        ],
+        "publication_year": 2017,
+        "publisher": "Penguin Books",
+        "cover_url": "https://m.media-amazon.com/images/I/71avElilWrL._UF1000,1000_QL80_.jpg",
+        "pages": 336,
+        "quantity": 8
+    },
+    {
+        "title": "The Seven Husbands of Evelyn Hugo",
+        "author": "Taylor Jenkins Reid",
+        "isbn": "9781501139239",
+        "genres": [
+            "Historical Fiction",
+            "Romance"
+        ],
+        "publication_year": 2017,
+        "publisher": "Atria Books",
+        "cover_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRP2deNobPzSEZ94EQu0xogHBlTkiFhAeyx7Q&s",
+        "pages": 389,
+        "quantity": 11
+    },
+    {
+        "title": "The Night Circus",
+        "author": "Erin Morgenstern",
+        "isbn": "9780307946974",
+        "genres": [
+            "Fantasy",
+            "Romance"
+        ],
+        "publication_year": 2011,
+        "publisher": "Anchor",
+        "cover_url": "https://upload.wikimedia.org/wikipedia/en/c/c5/TheNightCircus.jpg",
+        "pages": 387,
+        "quantity": 16
+    },
+    {
+        "title": "A Court of Thorns and Roses",
+        "author": "Sarah J. Maas",
+        "isbn": "9781619634442",
+        "genres": [
+            "Fantasy",
+            "Romance"
+        ],
+        "publication_year": 2015,
+        "publisher": "Bloomsbury",
+        "cover_url": "https://m.media-amazon.com/images/I/515q-YlhiYL._SL240_CATL,225,225_RO112,1,0,0,0,0,0,0,8_.jpg",
+        "pages": 416,
+        "quantity": 22
+    },
+    {
+        "title": "The Martian",
+        "author": "Andy Weir",
+        "isbn": "9780553418026",
+        "genres": [
+            "Science Fiction",
+            "Adventure"
+        ],
+        "publication_year": 2014,
+        "publisher": "Broadway Books",
+        "cover_url": "https://lumiere-a.akamaihd.net/v1/images/image_a119dd78.jpeg?region=0%2C0%2C800%2C1200",
+        "pages": 384,
+        "quantity": 9
+    },
+    {
+        "title": "Ready Player One",
+        "author": "Ernest Cline",
+        "isbn": "9780307887444",
+        "genres": [
+            "Science Fiction",
+            "Adventure"
+        ],
+        "publication_year": 2011,
+        "publisher": "Broadway Books",
+        "cover_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8psmxCJNzkmduFEzwuk20l6ohx41Km_13nQ&s",
+        "pages": 384,
+        "quantity": 17
+    },
+    {
+        "title": "The Girl with the Dragon Tattoo",
+        "author": "Stieg Larsson",
+        "isbn": "9780307476146",
+        "genres": [
+            "Thriller",
+            "Mystery"
+        ],
+        "publication_year": 2005,
+        "publisher": "Vintage",
+        "cover_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7xQAvg2PaGZIMdTkdq9k49_tzYp9385xpfw&s",
+        "pages": 672,
+        "quantity": 6
+    },
+    {
+        "title": "Frankenstein",
+        "author": "Mary Shelley",
+        "isbn": "9780451527790",
+        "genres": [
+            "Horror",
+            "Classic"
+        ],
+        "publication_year": 1818,
+        "publisher": "Signet Classic",
+        "cover_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnesMUdmQnlqiNQnQWrhCI8urwlKhBzB31FPTGy_jnN5Lu19CHFqdhd_aSrnVPGp8uLLQ&usqp=CAU",
+        "pages": 288,
+        "quantity": 4
+    },
+    {
+        "title": "Dracula",
+        "author": "Bram Stoker",
+        "isbn": "9780451529855",
+        "genres": [
+            "Horror",
+            "Classic"
+        ],
+        "publication_year": 1897,
+        "publisher": "Signet Classic",
+        "cover_url": "https://m.media-amazon.com/images/M/MV5BZGVlYTdhYzQtYWVmMi00OTJmLTkyYmYtMWRiMTgyMmY2MjEyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+        "pages": 448,
+        "quantity": 3
+    },
+    {
+        "title": "The Road",
+        "author": "Cormac McCarthy",
+        "isbn": "9780307387895",
+        "genres": [
+            "Post-Apocalyptic",
+            "Fiction"
+        ],
+        "publication_year": 2006,
+        "publisher": "Vintage",
+        "cover_url": "https://m.media-amazon.com/images/I/81P45LkcMuL._UF1000,1000_QL80_.jpg",
+        "pages": 287,
+        "quantity": 8
+    },
+    {
+        "title": "The Stand",
+        "author": "Stephen King",
+        "isbn": "9780307947933",
+        "genres": [
+            "Horror",
+            "Post-Apocalyptic"
+        ],
+        "publication_year": 1978,
+        "publisher": "Anchor",
+        "cover_url": "https://m.media-amazon.com/images/M/MV5BYmVhN2QzZTItYzZkOS00NDIwLTllZGUtZTQ4OTUzMWY2MzdkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+        "pages": 1152,
+        "quantity": 6
+    },
+    {
+        "title": "IT",
+        "author": "Stephen King",
+        "isbn": "9781501175466",
+        "genres": [
+            "Horror"
+        ],
+        "publication_year": 1986,
+        "publisher": "Scribner",
+        "cover_url": "https://d3525k1ryd2155.cloudfront.net/f/518/169/9780451169518.PE.0.l.jpg",
+        "pages": 1138,
+        "quantity": 7
+    },
+    {
+        "title": "The Shining",
+        "author": "Stephen King",
+        "isbn": "9780307743651",
+        "genres": [
+            "Horror"
+        ],
+        "publication_year": 1977,
+        "publisher": "Anchor",
+        "cover_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUsFXNviQ9UVzbUGZh6t6upwZJIWfDvzglqA&s",
+        "pages": 447,
+        "quantity": 5
+    },
+    {
+        "title": "The Handmaid's Tale",
+        "author": "Margaret Atwood",
+        "isbn": "9780385490818",
+        "genres": [
+            "Dystopian",
+            "Feminist Fiction"
+        ],
+        "publication_year": 1985,
+        "publisher": "Anchor",
+        "cover_url": "https://m.media-amazon.com/images/I/81SnmXoJViL._UF1000,1000_QL80_.jpg",
+        "pages": 311,
+        "quantity": 11
+    },
+    {
+        "title": "A Tale of Two Cities",
+        "author": "Charles Dickens",
+        "isbn": "9780451530936",
+        "genres": [
+            "Classic",
+            "Historical Fiction"
+        ],
+        "publication_year": 1859,
+        "publisher": "Signet Classic",
+        "cover_url": "https://m.media-amazon.com/images/I/71CQFGiPA+L._UF894,1000_QL80_.jpg",
+        "pages": 480,
+        "quantity": 5
+    },
+    {
+        "title": "The Picture of Dorian Gray",
+        "author": "Oscar Wilde",
+        "isbn": "9780451528650",
+        "genres": [
+            "Classic",
+            "Gothic Fiction"
+        ],
+        "publication_year": 1890,
+        "publisher": "Signet Classic",
+        "cover_url": "https://m.media-amazon.com/images/I/61r4ySDs-RL._UF1000,1000_QL80_.jpg",
+        "pages": 254,
+        "quantity": 4
+    },
+    {
+        "title": "The Adventures of Huckleberry Finn",
+        "author": "Mark Twain",
+        "isbn": "9780486280479",
+        "genres": [
+            "Classic",
+            "Adventure"
+        ],
+        "publication_year": 1884,
+        "publisher": "Dover Publications",
+        "cover_url": "https://m.media-amazon.com/images/I/91H34WEefnL._UF1000,1000_QL80_.jpg",
+        "pages": 224,
+        "quantity": 6
+    },
+    {
+        "title": "One Hundred Years of Solitude",
+        "author": "Gabriel García Márquez",
+        "isbn": "9780060883287",
+        "genres": [
+            "Magical Realism",
+            "Classic"
+        ],
+        "publication_year": 1967,
+        "publisher": "Harper Perennial",
+        "cover_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzxBEWEeVk5I9ixKsBUIbx7a-vgAvbqPVlbQ&s",
+        "pages": 417,
+        "quantity": 9
+    },
+    {
+        "title": "Crime and Punishment",
+        "author": "Fyodor Dostoevsky",
+        "isbn": "9780486415871",
+        "genres": [
+            "Classic",
+            "Psychological Fiction"
+        ],
+        "publication_year": 1866,
+        "publisher": "Dover Publications",
+        "cover_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOz2l4HbsYkjEcbCR-WdcPmyBugvxQUP_drg&s",
+        "pages": 496,
+        "quantity": 5
+    },
+    {
+        "title": "Don Quixote",
+        "author": "Miguel de Cervantes",
+        "isbn": "9780060935108",
+        "genres": [
+            "Classic",
+            "Satire"
+        ],
+        "publication_year": 1605,
+        "publisher": "Harper Perennial",
+        "cover_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbNEv5TMrZorfPXGzIuZeM7Wa2dLlud_7m8A&s",
+        "pages": 1056,
+        "quantity": 2
+    },
+    {
+        "title": "Jane Eyre",
+        "author": "Charlotte Brontë",
+        "isbn": "9780486295282",
+        "genres": [
+            "Classic",
+            "Gothic Fiction"
+        ],
+        "publication_year": 1847,
+        "publisher": "Dover Publications",
+        "cover_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3Srx93rkVSljhrhhKlOEsn7Q0Q-oxR1c0Sw&s",
+        "pages": 500,
+        "quantity": 7
+    },
+    {
+        "title": "Wuthering Heights",
+        "author": "Emily Brontë",
+        "isbn": "9780486292557",
+        "genres": [
+            "Classic",
+            "Gothic Fiction"
+        ],
+        "publication_year": 1847,
+        "publisher": "Dover Publications",
+        "cover_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHiNwiOKNW4S0hUqquFnzbX-esmh6AONd55w&s",
+        "pages": 298,
+        "quantity": 6
+    },
+    {
+        "title": "The Name of the Wind",
+        "author": "Patrick Rothfuss",
+        "isbn": "9780756404741",
+        "genres": [
+            "Fantasy"
+        ],
+        "publication_year": 2007,
+        "publisher": "DAW Books",
+        "cover_url": "https://upload.wikimedia.org/wikipedia/en/5/56/TheNameoftheWind_cover.jpg",
+        "pages": 662,
+        "quantity": 8
+    },
+    {
+        "title": "A Game of Thrones",
+        "author": "George R.R. Martin",
+        "isbn": "9780553588484",
+        "genres": [
+            "Fantasy"
+        ],
+        "publication_year": 1996,
+        "publisher": "Bantam",
+        "cover_url": "https://m.media-amazon.com/images/I/71P+4DslKmL.jpg",
+        "pages": 835,
+        "quantity": 20
+    },
+    {
+        "title": "The Midnight Library",
+        "author": "Matt Haig",
+        "isbn": "9780525559474",
+        "genres": [
+            "Fantasy",
+            "Contemporary"
+        ],
+        "publication_year": 2020,
+        "publisher": "Viking",
+        "cover_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8ibAeKOxKkotkShhuOcTO2lF8MSmCNjP2rA&s",
+        "pages": 304,
+        "quantity": 25
+    },
+    {
+        "title": "The Book Thief",
+        "author": "Markus Zusak",
+        "isbn": "9780375842207",
+        "genres": [
+            "Historical Fiction",
+            "Young Adult"
+        ],
+        "publication_year": 2005,
+        "publisher": "Alfred A. Knopf",
+        "cover_url": "https://upload.wikimedia.org/wikipedia/en/7/72/The-Book-Thief_poster.jpg",
+        "pages": 552,
+        "quantity": 12
+    },
+    {
+        "title": "The Goldfinch",
+        "author": "Donna Tartt",
+        "isbn": "9781444773283",
+        "genres": [
+            "Literary Fiction"
+        ],
+        "publication_year": 2013,
+        "publisher": "Little, Brown and Company",
+        "cover_url": "https://m.media-amazon.com/images/I/41gz3R2jSYL._UF1000,1000_QL80_.jpg",
+        "pages": 771,
+        "quantity": 11
+    },
+    {
+        "title": "Blood Meridian",
+        "author": "Cormac McCarthy",
+        "isbn": "9780679728757",
+        "genres": [
+            "Western",
+            "Historical Fiction"
+        ],
+        "publication_year": 1985,
+        "publisher": "Vintage",
+        "cover_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIcRBauzb9IaDcvmc2jNKHmlk7Ttw1rb6xZw&s",
+        "pages": 351,
+        "quantity": 6
+    },
+    {
+        "title": "Atonement",
+        "author": "Ian McEwan",
+        "isbn": "9780307387536",
+        "genres": [
+            "Literary Fiction",
+            "Historical Fiction"
+        ],
+        "publication_year": 2001,
+        "publisher": "Anchor",
+        "cover_url": "https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p167496_p_v8_am.jpg",
+        "pages": 351,
+        "quantity": 9
+    },
+    {
+        "title": "The Remains of the Day",
+        "author": "Kazuo Ishiguro",
+        "isbn": "9780679731726",
+        "genres": [
+            "Literary Fiction",
+            "Historical Fiction"
+        ],
+        "publication_year": 1989,
+        "publisher": "Vintage",
+        "cover_url": "https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p15074_p_v10_ab.jpg",
+        "pages": 245,
+        "quantity": 7
+    },
+    {
+        "title": "The Secret History",
+        "author": "Donna Tartt",
+        "isbn": "9780679720645",
+        "genres": [
+            "Mystery",
+            "Literary Fiction"
+        ],
+        "publication_year": 1992,
+        "publisher": "Vintage",
+        "cover_url": "https://m.media-amazon.com/images/I/71ZjiVHpJ9L._UF1000,1000_QL80_.jpg",
+        "pages": 559,
+        "quantity": 14
+    }
+]

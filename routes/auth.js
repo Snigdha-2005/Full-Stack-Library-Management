@@ -11,6 +11,8 @@ router.post("/register", async (req, res) => {
   try {
     const { name, email, userName, password, role } = req.body;
 
+    if(password.length<8)
+      return res.status(400).json({message:"Use a password of at least 8 characters"})
     const email_exists = await User.findOne({ email });
     const userName_exists = await User.findOne({ userName });
 
@@ -80,6 +82,8 @@ router.post("/login", async (req, res) => {
 router.post("/reset-password", async (req, res) => {
   try {
     const { email, newPassword } = req.body;
+    if(newPassword.length<8)
+      return res.status(400).json({message:"Use a password of at least 8 characters"})
 
     const user = await User.findOne({ email });
     if (!user) {
@@ -91,7 +95,7 @@ router.post("/reset-password", async (req, res) => {
     user.password = hashedPassword;
     await user.save();
 
-    res.json({ message: "Password updated successfully" });
+    res.redirect("/login");
   } catch (err) {
     console.error("Reset password error:", err);
     res.status(500).json({ message: "Server error" });

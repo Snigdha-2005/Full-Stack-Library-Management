@@ -192,7 +192,7 @@ const alphabetFilter=document.getElementById("alphabetFilter");
 let books=[];  
 
 async function getBooks(){
-  const response=await fetch('http://localhost:5000/api/getBooks');
+  const response=await fetch('/api/getBooks');
   if(response.ok){
     const data=await response.json();
     books=data;
@@ -267,15 +267,15 @@ letters.forEach(letter=>{
   alphabetFilter.appendChild(btn);
 });
 
-// ✅ Logout
 logoutBtn.addEventListener("click", async()=>{
-  const response= await fetch('/logout');
+  const response= await fetch('/logout',{
+    method: 'POST'
+  });
   if(response.redirected){
     window.location.replace(response.url);
   }
 });
 
-// ✅ Page load
 window.onload=async()=>{
   getBooks();
   renderBooks(books);
